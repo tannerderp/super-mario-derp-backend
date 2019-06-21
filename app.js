@@ -26,6 +26,6 @@ app.get("/levels", function(req, res){
     })
 });
 
-app.listen(9000, undefined, function(){
-    console.log("Server has started on port 9000");
+app.listen(process.env.PORT || 9000, process.env.IP, function(){
+    console.log("Server has started on port " + (process.env.PORT || 9000));
 });
