@@ -10,6 +10,10 @@ var levelSchema = new mongoose.Schema({
     name: String,
     map: [String],
     creator: String,
+    background: Number,
+    music: Number,
+    topGroundColor: [Number],
+    groundColor: [Number],
 });
 var Level = mongoose.model("Level", levelSchema);
 
@@ -32,6 +36,10 @@ app.post("/newlevel", function(req, res){
         name: b.name || "Untitled",
         map: b.map || [""],
         creator: b.creator || "Secret Boi",
+        background: b.background || 0,
+        music: b.music || 0,
+        topGroundColor: b.topGroundColor || [57, 175, 14],
+        groundColor: b.groundColor || [175, 118, 10],
     }
     Level.create(newLevel, function(error, level){
         if(error){
