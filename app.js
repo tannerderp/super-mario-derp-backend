@@ -2,7 +2,6 @@ var express = require("express"),
     app = express(),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose")
-app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
 mongoose.connect("mongodb+srv://publicguy37:yaydatabases@cluster0-owcel.mongodb.net/community_levels?retryWrites=true&w=majority", { useNewUrlParser: true })
@@ -16,6 +15,22 @@ var levelSchema = new mongoose.Schema({
     groundColor: [Number],
 });
 var Level = mongoose.model("Level", levelSchema);
+
+var allowCrossDomain = function(req, res, next) { //everyone hates CORS
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+      res.send(200);
+    }
+    else {
+      next();
+    }
+};
+app.use(allowCrossDomain);
+app.use(bodyParser.urlencoded({extended:true}));
 
 app.get("/", function(req, res){
     res.redirect("https://supermarioderp.tannerderp.tk");
