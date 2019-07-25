@@ -70,3 +70,7 @@ app.post("/newlevel", function(req, res){
 app.listen(process.env.PORT || 9000, process.env.IP, function(){
     console.log("Server has started on port " + (process.env.PORT || 9000));
 });
+
+setInterval(function(){
+    http.get("http://super-mario-derp.herokuapp.com/");
+}, 250000)
