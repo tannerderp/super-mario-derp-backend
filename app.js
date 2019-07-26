@@ -2,7 +2,7 @@ var express = require("express"),
     app = express(),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose")
-    http = require("http"):
+    http = require("http");
 app.set("view engine", "ejs");
 
 mongoose.connect("mongodb+srv://publicguy37:yaydatabases@cluster0-owcel.mongodb.net/community_levels?retryWrites=true&w=majority", { useNewUrlParser: true })
